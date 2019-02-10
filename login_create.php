@@ -2,14 +2,7 @@
 <?php include "functions.php";?>
 <?php createRows(); ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-</head>    
-<body>
+<?php include "header.php"; ?>
 <div class="container">
     <div class="col-sm-6">
        <h1 class="text-center">Create</h1>
@@ -30,6 +23,4 @@
             
 </div>   
     
-
-</body>
-</html>
+<?php include "footer.php"; ?>

@@ -1,9 +1,30 @@
 <?php include "db.php";
+function readRows(){
+    global $connection;
+    $query="SELECT * FROM users";
+    $result=mysqli_query($connection,$query);
+    if(!$result){
+        die("Query failed" . mysqli_error($result));
+    }
+
+    while($row = mysqli_fetch_assoc($result)){
+        print_r($row);
+    }
+}
 function createRows(){
     global $connection;
     if(isset($_POST['submit'])){
     $username=$_POST['username'];
     $password=$_POST['password'];
+    //auto formatting input info    
+    $username = mysqli_real_escape_string($connection,$username);
+    $password = mysqli_real_escape_string($connection,$password);
+    //encrypt password
+    $hashFormat="$2y$10$";
+    $salt="iusesomecrazystrings22";
+    $hashF_and_salt=$hashFormat . $salt;
+    $password = crypt($password,$hashF_and_salt);
+        
     $query ="INSERT INTO users(username,password) ";
     $query .="VALUES ('$username','$password')";
  $result=mysqli_query($connection,$query);
